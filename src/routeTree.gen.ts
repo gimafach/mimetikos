@@ -9,9 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WeKnowRouteImport } from './routes/we-know'
+import { Route as LoSappiamoRouteImport } from './routes/lo-sappiamo'
 import { Route as EnRouteImport } from './routes/en'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WeKnowRoute = WeKnowRouteImport.update({
+  id: '/we-know',
+  path: '/we-know',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoSappiamoRoute = LoSappiamoRouteImport.update({
+  id: '/lo-sappiamo',
+  path: '/lo-sappiamo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnRoute = EnRouteImport.update({
   id: '/en',
   path: '/en',
@@ -26,31 +38,53 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/en': typeof EnRoute
+  '/lo-sappiamo': typeof LoSappiamoRoute
+  '/we-know': typeof WeKnowRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/en': typeof EnRoute
+  '/lo-sappiamo': typeof LoSappiamoRoute
+  '/we-know': typeof WeKnowRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/en': typeof EnRoute
+  '/lo-sappiamo': typeof LoSappiamoRoute
+  '/we-know': typeof WeKnowRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/en'
+  fullPaths: '/' | '/en' | '/lo-sappiamo' | '/we-know'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/en'
-  id: '__root__' | '/' | '/en'
+  to: '/' | '/en' | '/lo-sappiamo' | '/we-know'
+  id: '__root__' | '/' | '/en' | '/lo-sappiamo' | '/we-know'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EnRoute: typeof EnRoute
+  LoSappiamoRoute: typeof LoSappiamoRoute
+  WeKnowRoute: typeof WeKnowRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/we-know': {
+      id: '/we-know'
+      path: '/we-know'
+      fullPath: '/we-know'
+      preLoaderRoute: typeof WeKnowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lo-sappiamo': {
+      id: '/lo-sappiamo'
+      path: '/lo-sappiamo'
+      fullPath: '/lo-sappiamo'
+      preLoaderRoute: typeof LoSappiamoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en': {
       id: '/en'
       path: '/en'
@@ -71,6 +105,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EnRoute: EnRoute,
+  LoSappiamoRoute: LoSappiamoRoute,
+  WeKnowRoute: WeKnowRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

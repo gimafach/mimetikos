@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { MobileNav } from "@/components/MobileNav";
 import {
   Eye,
   Brain,
@@ -22,6 +23,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import heroDevice from "@/assets/hero-device.jpg";
+import heroDevicePng from "@/assets/hero-device-pillars.png";
 import catPromotori from "@/assets/cat-promotori.jpg";
 import catCommLegali from "@/assets/cat-commercialisti-legali.jpg";
 import catPmi from "@/assets/cat-pmi.jpg";
@@ -29,24 +31,11 @@ import catTurismo from "@/assets/cat-turismo.jpg";
 
 export const Route = createFileRoute("/en")({
   component: IndexEn,
-  head: () => ({
-    meta: [
-      { title: "Mimētikós — The worker you can't find. 24/7." },
-      {
-        name: "description",
-        content:
-          "Mimētikós installs private AI employees that learn procedures, organize knowledge and execute approved automations — without sending data to third parties in the cloud.",
-      },
-    ],
-  }),
 });
 
 const navLinks = [
   { label: "How it works", href: "#how-it-works" },
   { label: "Who it's for", href: "#who" },
-  { label: "Security", href: "#security" },
-  { label: "Architecture", href: "#architecture" },
-  { label: "Contact", href: "#contact" },
 ];
 
 const pillars = [
@@ -115,7 +104,7 @@ const trust = [
   {
     icon: ShieldAlert,
     title: "Security & compliance",
-    text: "Designed for privacy — your privacy and GDPR.",
+    text: "Designed for privacy — your privacy, GDPR and the EU AI Act.",
   },
 ];
 
@@ -145,66 +134,91 @@ function IndexEn() {
               </li>
             ))}
             <li>
+              <Link to="/we-know" className="transition-colors hover:text-primary">
+                We know
+              </Link>
+            </li>
+            <li>
               <Link to="/" className="text-muted-foreground transition-colors hover:text-primary">
                 IT
               </Link>
             </li>
           </ul>
-          <a
-            href="#contact"
-            className="rounded-md border border-primary/70 px-4 py-2 text-sm text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-          >
-            Request a demo
-          </a>
+          <MobileNav
+            links={navLinks}
+            knowTo="/we-know"
+            knowLabel="We know"
+            langTo="/"
+            langLabel="IT"
+            ctaHref="mailto:hello@mimetikos.it"
+            ctaLabel="Request a demo"
+          />
         </nav>
       </header>
 
       {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,oklch(0.3_0.05_60/0.5),transparent_60%)]" />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 pb-24 pt-36 lg:grid-cols-2 lg:gap-6 lg:px-10 lg:pb-32 lg:pt-40">
-          <div className="relative z-10 max-w-xl">
-            <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-              The worker
-              <br />
-              you can't find.
-              <br />
-              <span className="text-primary">24/7.</span>
-            </h1>
-            <p className="mt-6 text-2xl text-foreground/90 md:text-3xl">
-              Artificial, but <span className="text-primary">intelligent.</span>
-            </p>
-            <div className="mt-8 h-px w-16 bg-primary" />
-            <h2 className="mt-8 text-xl font-semibold">Mimētikós works alongside your people.</h2>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-              It becomes an <span className="text-foreground">operational AlterEgo</span> you work
-              with every day. Install AI employees that learn procedures, organize knowledge and
-              execute approved automations — without sending data to third parties in the cloud.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <a
-                href="#contact"
-                className="rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
-              >
-                Request a demo
-              </a>
-              <a
-                href="#how-it-works"
-                className="rounded-md border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary/60 hover:text-primary"
-              >
-                See how it works
-              </a>
-            </div>
+      <section className="relative flex h-screen min-h-[640px] items-center overflow-hidden">
+        {/* Video background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={heroDevice}
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/mimetikos.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/75 via-background/30 to-background" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,oklch(0.35_0.08_250/0.5),transparent_65%)]" />
+
+        {/* Content */}
+        <div className="relative z-10 mx-auto w-full max-w-3xl px-6 text-center lg:px-10">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            Private AI employees for professionals and SMEs
+          </p>
+          <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+            The worker
+            <br />
+            you can't find.
+            <br />
+            <span className="text-primary">24/7.</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-xl text-xl text-foreground/85 md:text-2xl">
+            Artificial, but <span className="text-primary">intelligent.</span>
+          </p>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-foreground/60 md:text-base">
+            Install AI employees that learn your procedures, organise knowledge and execute
+            approved automations — without sending data to third parties in the cloud.
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <a
+              href="mailto:hello@mimetikos.it"
+              className="rounded-md bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
+            >
+              Request a demo
+            </a>
+            <a
+              href="#how-it-works"
+              className="rounded-md border border-white/20 px-7 py-3 text-sm font-medium text-foreground/90 backdrop-blur-sm transition-colors hover:border-primary/60 hover:text-primary"
+            >
+              See how it works
+            </a>
           </div>
 
-          <div className="relative">
-            <img
-              src={heroDevice}
-              alt="Mimētikós device on an office desk"
-              width={1280}
-              height={1280}
-              className="mx-auto w-full max-w-xl rounded-2xl object-cover shadow-2xl"
-            />
+          {/* Trust strip */}
+          <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-foreground/40">
+            <span className="flex items-center gap-1.5">
+              <Lock className="h-3 w-3" /> Local & private AI
+            </span>
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="h-3 w-3" /> GDPR
+            </span>
+            <span className="flex items-center gap-1.5">
+              <ShieldAlert className="h-3 w-3" /> EU AI Act
+            </span>
           </div>
         </div>
       </section>
@@ -213,8 +227,17 @@ function IndexEn() {
       <section id="how-it-works" className="px-6 pb-10 lg:px-10">
         <div className="mx-auto max-w-7xl rounded-2xl bg-card px-8 py-14 md:px-16">
           <h2 className="text-center text-3xl font-semibold md:text-4xl">
-            Observe. Learn. Work.
+            Observe. Learn. <span className="text-primary">Work.</span>
           </h2>
+          <div className="relative mt-10 overflow-hidden rounded-xl">
+            <img
+              src={heroDevicePng}
+              alt="Mimētikós device"
+              className="w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,oklch(0.35_0.08_250/0.6),transparent_70%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-background/25" />
+          </div>
           <div className="mt-12 grid gap-10 md:grid-cols-3">
             {pillars.map(({ icon: Icon, title, text }) => (
               <div key={title} className="text-center">
@@ -278,7 +301,7 @@ function IndexEn() {
       <section id="who" className="px-6 pb-10 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-center text-3xl font-semibold md:text-4xl">
-            For professional firms and SMEs
+            For Professionals, Firms and SMEs
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {verticals.map(({ img, icon: Icon, title, text }) => (
@@ -286,7 +309,7 @@ function IndexEn() {
                 key={title}
                 className="overflow-hidden rounded-2xl bg-card transition-transform hover:-translate-y-1"
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={img}
                     alt={title}
@@ -295,6 +318,8 @@ function IndexEn() {
                     height={512}
                     className="h-full w-full object-cover"
                   />
+                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,oklch(0.35_0.08_250/0.6),transparent_70%)]" />
+                  <div className="pointer-events-none absolute inset-0 bg-background/25" />
                 </div>
                 <div className="relative p-6">
                   <div className="absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-md bg-card text-primary ring-1 ring-primary/40">

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { MobileNav } from "@/components/MobileNav";
 import {
   Eye,
   Brain,
@@ -22,6 +23,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import heroDevice from "@/assets/hero-device.jpg";
+import heroDevicePng from "@/assets/hero-device-pillars.png";
 import catPromotori from "@/assets/cat-promotori.jpg";
 import catCommLegali from "@/assets/cat-commercialisti-legali.jpg";
 import catPmi from "@/assets/cat-pmi.jpg";
@@ -29,24 +31,12 @@ import catTurismo from "@/assets/cat-turismo.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
-  head: () => ({
-    meta: [
-      { title: "Mimētikós — Il lavoratore che non trovi. H24." },
-      {
-        name: "description",
-        content:
-          "Mimētikós installa dipendenti AI privati che imparano procedure, organizzano conoscenza ed eseguono automazioni approvate, senza inviare dati a terzi nel cloud.",
-      },
-    ],
-  }),
 });
 
 const navLinks = [
   { label: "Come funziona", href: "#come-funziona" },
   { label: "Per chi è", href: "#per-chi" },
   { label: "Sicurezza", href: "#sicurezza" },
-  { label: "Architettura", href: "#architettura" },
-  { label: "Contatti", href: "#contatti" },
 ];
 
 const pillars = [
@@ -115,7 +105,7 @@ const trust = [
   {
     icon: ShieldAlert,
     title: "Sicurezza e compliance",
-    text: "Progettato per la privacy, la tua privacy e il GDPR.",
+    text: "Progettato per la privacy, la tua privacy, il GDPR e l'EU AI Act.",
   },
 ];
 
@@ -147,66 +137,93 @@ function Index() {
               </li>
             ))}
             <li>
+              <Link to="/lo-sappiamo" className="transition-colors hover:text-primary">
+                Lo sappiamo
+              </Link>
+            </li>
+            <li>
               <Link to="/en" className="text-muted-foreground transition-colors hover:text-primary">
                 EN
               </Link>
             </li>
           </ul>
-          <a
-            href="#contatti"
-            className="rounded-md border border-primary/70 px-4 py-2 text-sm text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-          >
-            Richiedi una demo
-          </a>
+          <MobileNav
+            links={navLinks}
+            knowTo="/lo-sappiamo"
+            knowLabel="Lo sappiamo"
+            langTo="/en"
+            langLabel="EN"
+            ctaHref="#contatti"
+            ctaLabel="Richiedi una demo"
+          />
         </nav>
       </header>
 
       {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,oklch(0.35_0.08_250/0.55),transparent_60%)]" />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 pb-24 pt-36 lg:grid-cols-2 lg:gap-6 lg:px-10 lg:pb-32 lg:pt-40">
-          <div className="relative z-10 max-w-xl">
-            <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-              Il lavoratore
-              <br />
-              che non trovi.
-              <br />
-              <span className="text-primary">H24.</span>
-            </h1>
-            <p className="mt-6 text-2xl text-foreground/90 md:text-3xl">
-              Artificiale, ma <span className="text-primary">intelligente.</span>
-            </p>
-            <div className="mt-8 h-px w-16 bg-primary" />
-            <h2 className="mt-8 text-xl font-semibold">Mimētikós affianca le tue persone.</h2>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-              Diventa un <span className="text-foreground">AlterEgo operativo</span> con cui
-              lavorare ogni giorno. Installa dipendenti AI che imparano procedure, organizzano
-              conoscenza ed eseguono automazioni approvate — senza inviare dati a terzi nel cloud.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <a
-                href="#contatti"
-                className="rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
-              >
-                Richiedi una demo
-              </a>
-              <a
-                href="#come-funziona"
-                className="rounded-md border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary/60 hover:text-primary"
-              >
-                Scopri come funziona
-              </a>
-            </div>
+      <section className="relative flex h-screen min-h-[640px] items-center overflow-hidden">
+        {/* Video background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={heroDevice}
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/mimetikos.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay: dark at top (nav leggibility) → trasparente al centro → fade a bg in basso */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/75 via-background/30 to-background" />
+
+        {/* Accento radiale blu */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,oklch(0.35_0.08_250/0.5),transparent_65%)]" />
+
+        {/* Contenuto centrato */}
+        <div className="relative z-10 mx-auto w-full max-w-3xl px-6 text-center lg:px-10">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            Dipendenti AI privati per professionisti e PMI
+          </p>
+          <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+            Il lavoratore
+            <br />
+            che non trovi.
+            <br />
+            <span className="text-primary">H24.</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-xl text-xl text-foreground/85 md:text-2xl">
+            Artificiale, ma <span className="text-primary">intelligente.</span>
+          </p>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-foreground/60 md:text-base">
+            Installa dipendenti AI che imparano le tue procedure, organizzano la conoscenza
+            ed eseguono automazioni approvate — senza inviare dati a terzi nel cloud.
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <a
+              href="#contatti"
+              className="rounded-md bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
+            >
+              Richiedi una demo
+            </a>
+            <a
+              href="#come-funziona"
+              className="rounded-md border border-white/20 px-7 py-3 text-sm font-medium text-foreground/90 backdrop-blur-sm transition-colors hover:border-primary/60 hover:text-primary"
+            >
+              Scopri come funziona
+            </a>
           </div>
 
-          <div className="relative">
-            <img
-              src={heroDevice}
-              alt="Dispositivo Mimētikós su scrivania in ufficio"
-              width={1280}
-              height={1280}
-              className="mx-auto w-full max-w-xl rounded-2xl object-cover shadow-2xl"
-            />
+          {/* Trust strip */}
+          <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-foreground/40">
+            <span className="flex items-center gap-1.5">
+              <Lock className="h-3 w-3" /> AI locale e privata
+            </span>
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="h-3 w-3" /> GDPR
+            </span>
+            <span className="flex items-center gap-1.5">
+              <ShieldAlert className="h-3 w-3" /> EU AI Act
+            </span>
           </div>
         </div>
       </section>
@@ -215,8 +232,17 @@ function Index() {
       <section id="come-funziona" className="px-6 pb-10 lg:px-10">
         <div className="mx-auto max-w-7xl rounded-2xl bg-card px-8 py-14 md:px-16">
           <h2 className="text-center text-3xl font-semibold md:text-4xl">
-            Osserva. Impara. Lavora.
+            Osserva. Impara. <span className="text-primary">Lavora.</span>
           </h2>
+          <div className="relative mt-10 overflow-hidden rounded-xl">
+            <img
+              src={heroDevicePng}
+              alt="Dispositivo Mimētikós"
+              className="w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,oklch(0.35_0.08_250/0.6),transparent_70%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-background/25" />
+          </div>
           <div className="mt-12 grid gap-10 md:grid-cols-3">
             {pillars.map(({ icon: Icon, title, text }) => (
               <div key={title} className="text-center">
@@ -280,7 +306,7 @@ function Index() {
       <section id="per-chi" className="px-6 pb-10 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-center text-3xl font-semibold md:text-4xl">
-            Per studi professionali e PMI
+            Per Professionisti, Studi e PMI
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {verticals.map(({ img, icon: Icon, title, text }) => (
@@ -288,7 +314,7 @@ function Index() {
                 key={title}
                 className="overflow-hidden rounded-2xl bg-card transition-transform hover:-translate-y-1"
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={img}
                     alt={title}
@@ -297,6 +323,8 @@ function Index() {
                     height={512}
                     className="h-full w-full object-cover"
                   />
+                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,oklch(0.35_0.08_250/0.6),transparent_70%)]" />
+                  <div className="pointer-events-none absolute inset-0 bg-background/25" />
                 </div>
                 <div className="relative p-6">
                   <div className="absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-md bg-card text-primary ring-1 ring-primary/40">
