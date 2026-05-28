@@ -60,16 +60,6 @@ const pillars = [
   },
 ];
 
-const tools = [
-  { icon: Mail, label: "Email" },
-  { icon: FileText, label: "Documenti" },
-  { icon: FileSpreadsheet, label: "Excel" },
-  { icon: Settings, label: "ERP" },
-  { icon: MessageCircle, label: "WhatsApp" },
-  { icon: ListChecks, label: "Procedure" },
-  { icon: BookOpen, label: "Conoscenza interna" },
-  { icon: MoreHorizontal, label: "E molto altro" },
-];
 
 const verticals = [
   {
@@ -109,6 +99,94 @@ const trust = [
   },
 ];
 
+function OrchestratorDiagram() {
+  const items = [
+    { icon: Mail, label: "Email" },
+    { icon: MessageCircle, label: "WhatsApp" },
+    { icon: Settings, label: "ERP" },
+    { icon: FileSpreadsheet, label: "Excel" },
+    { icon: FileText, label: "Documenti" },
+    { icon: ListChecks, label: "Procedure" },
+    { icon: BookOpen, label: "Conoscenza" },
+    { icon: MoreHorizontal, label: "Altro" },
+  ];
+
+  const cx = 50;
+  const cy = 50;
+  const outerR = 36;
+  const centerR = 10;
+
+  const nodes = items.map((item, i) => {
+    const angle = (i / items.length) * 2 * Math.PI - Math.PI / 2;
+    const x = cx + outerR * Math.cos(angle);
+    const y = cy + outerR * Math.sin(angle);
+    const dx = x - cx;
+    const dy = y - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    return {
+      ...item,
+      x,
+      y,
+      lx1: cx + (dx / dist) * (centerR + 1),
+      ly1: cy + (dy / dist) * (centerR + 1),
+      lx2: x - (dx / dist) * 7,
+      ly2: y - (dy / dist) * 7,
+    };
+  });
+
+  return (
+    <div className="relative mx-auto aspect-square w-full max-w-[400px]">
+      <svg
+        viewBox="0 0 100 100"
+        className="absolute inset-0 h-full w-full"
+        aria-hidden="true"
+        overflow="visible"
+      >
+        <defs>
+          <marker id="tip" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+            <path d="M0,0 L5,2.5 L0,5 Z" className="fill-primary" opacity="0.55" />
+          </marker>
+        </defs>
+        {nodes.map(({ label, lx1, ly1, lx2, ly2 }) => (
+          <line
+            key={label}
+            x1={lx1}
+            y1={ly1}
+            x2={lx2}
+            y2={ly2}
+            className="stroke-primary"
+            strokeWidth="0.5"
+            strokeDasharray="2 1.5"
+            opacity="0.4"
+            markerEnd="url(#tip)"
+          />
+        ))}
+      </svg>
+
+      {/* Center M */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-[20%] w-[20%] items-center justify-center rounded-full border-2 border-primary bg-primary/10 text-primary">
+        <span className="text-xl font-semibold leading-none">M</span>
+      </div>
+
+      {/* Tool nodes */}
+      {nodes.map(({ icon: Icon, label, x, y }) => (
+        <div
+          key={label}
+          className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5"
+          style={{ left: `${x}%`, top: `${y}%` }}
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-md border border-primary/40 bg-card text-primary">
+            <Icon className="h-5 w-5" strokeWidth={1.5} />
+          </div>
+          <span className="max-w-[60px] text-center text-[10px] leading-tight text-foreground/65">
+            {label}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function Logo() {
   return (
     <a href="#" className="flex items-baseline gap-0.5 text-2xl font-light tracking-tight">
@@ -136,6 +214,11 @@ function Index() {
                 </a>
               </li>
             ))}
+            <li>
+              <Link to="/scopri-di-piu" className="transition-colors hover:text-primary">
+                Scopri di più
+              </Link>
+            </li>
             <li>
               <Link to="/lo-sappiamo" className="transition-colors hover:text-primary">
                 Lo sappiamo
@@ -278,25 +361,16 @@ function Index() {
               il tuo modo di lavorare.
             </p>
             <a
-              href="#architettura"
+              href="/scopri-di-piu"
               className="mt-7 inline-flex items-center gap-2 text-primary transition-colors hover:text-primary/80"
             >
               Scopri di più <ArrowRight className="h-4 w-4" />
             </a>
           </div>
-          <div>
-            <div className="grid grid-cols-2 gap-y-8 sm:grid-cols-4">
-              {tools.map(({ icon: Icon, label }) => (
-                <div key={label} className="flex flex-col items-center text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-primary/40 text-primary">
-                    <Icon className="h-6 w-6" strokeWidth={1.5} />
-                  </div>
-                  <span className="mt-3 text-sm text-foreground/90">{label}</span>
-                </div>
-              ))}
-            </div>
-            <p className="mt-10 text-center text-muted-foreground">
-              Mimētikós impara come il lavoro viene davvero svolto.
+          <div className="flex flex-col items-center gap-4">
+            <OrchestratorDiagram />
+            <p className="text-center text-sm text-muted-foreground">
+              Mimētikós orchestra i tuoi sistemi esistenti.
             </p>
           </div>
         </div>

@@ -10,13 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeKnowRouteImport } from './routes/we-know'
+import { Route as ScopriDiPiuRouteImport } from './routes/scopri-di-piu'
 import { Route as LoSappiamoRouteImport } from './routes/lo-sappiamo'
 import { Route as EnRouteImport } from './routes/en'
+import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WeKnowRoute = WeKnowRouteImport.update({
   id: '/we-know',
   path: '/we-know',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScopriDiPiuRoute = ScopriDiPiuRouteImport.update({
+  id: '/scopri-di-piu',
+  path: '/scopri-di-piu',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoSappiamoRoute = LoSappiamoRouteImport.update({
@@ -29,6 +36,11 @@ const EnRoute = EnRouteImport.update({
   path: '/en',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,35 +49,56 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
   '/en': typeof EnRoute
   '/lo-sappiamo': typeof LoSappiamoRoute
+  '/scopri-di-piu': typeof ScopriDiPiuRoute
   '/we-know': typeof WeKnowRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
   '/en': typeof EnRoute
   '/lo-sappiamo': typeof LoSappiamoRoute
+  '/scopri-di-piu': typeof ScopriDiPiuRoute
   '/we-know': typeof WeKnowRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
   '/en': typeof EnRoute
   '/lo-sappiamo': typeof LoSappiamoRoute
+  '/scopri-di-piu': typeof ScopriDiPiuRoute
   '/we-know': typeof WeKnowRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/en' | '/lo-sappiamo' | '/we-know'
+  fullPaths:
+    | '/'
+    | '/discover'
+    | '/en'
+    | '/lo-sappiamo'
+    | '/scopri-di-piu'
+    | '/we-know'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/en' | '/lo-sappiamo' | '/we-know'
-  id: '__root__' | '/' | '/en' | '/lo-sappiamo' | '/we-know'
+  to: '/' | '/discover' | '/en' | '/lo-sappiamo' | '/scopri-di-piu' | '/we-know'
+  id:
+    | '__root__'
+    | '/'
+    | '/discover'
+    | '/en'
+    | '/lo-sappiamo'
+    | '/scopri-di-piu'
+    | '/we-know'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DiscoverRoute: typeof DiscoverRoute
   EnRoute: typeof EnRoute
   LoSappiamoRoute: typeof LoSappiamoRoute
+  ScopriDiPiuRoute: typeof ScopriDiPiuRoute
   WeKnowRoute: typeof WeKnowRoute
 }
 
@@ -76,6 +109,13 @@ declare module '@tanstack/react-router' {
       path: '/we-know'
       fullPath: '/we-know'
       preLoaderRoute: typeof WeKnowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scopri-di-piu': {
+      id: '/scopri-di-piu'
+      path: '/scopri-di-piu'
+      fullPath: '/scopri-di-piu'
+      preLoaderRoute: typeof ScopriDiPiuRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lo-sappiamo': {
@@ -92,6 +132,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,8 +151,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DiscoverRoute: DiscoverRoute,
   EnRoute: EnRoute,
   LoSappiamoRoute: LoSappiamoRoute,
+  ScopriDiPiuRoute: ScopriDiPiuRoute,
   WeKnowRoute: WeKnowRoute,
 }
 export const routeTree = rootRouteImport
