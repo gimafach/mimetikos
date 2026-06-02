@@ -21,6 +21,7 @@ const navLinks = [
   { label: "Come funziona", href: "/#come-funziona" },
   { label: "Per chi è", href: "/#per-chi" },
   { label: "Sicurezza", href: "/#sicurezza" },
+  { label: "Scopri di più", href: "/scopri-di-piu" },
 ];
 
 const questions = [
@@ -228,9 +229,11 @@ function LoSappiamo() {
             Richiedi una demo
           </a>
         </div>
-        <p className="mx-auto mt-8 max-w-7xl text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Mimētikós. Tutti i diritti riservati.
-        </p>
+        <div className="mx-auto mt-8 max-w-7xl flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+          <span>© {new Date().getFullYear()} Mimētikós. Tutti i diritti riservati.</span>
+          <Link to="/privacy" className="hover:text-primary">Privacy Policy</Link>
+          <Link to="/cookie" className="hover:text-primary">Cookie Policy</Link>
+        </div>
       </footer>
     </div>
   );

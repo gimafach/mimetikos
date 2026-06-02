@@ -32,6 +32,8 @@ export interface WorkflowGraphData {
   knowledgePos?: { skills: { x: number; y: number }; wiki: { x: number; y: number } };
   viewWidth?: number;
   viewHeight?: number;
+  hideKnowledge?: boolean;
+  boxPadBottom?: number;
 }
 
 const VW = 600;
@@ -63,9 +65,10 @@ function edgePts(a: { x: number; y: number }, b: { x: number; y: number }, pad =
   };
 }
 
-export function WorkflowGraph({ data, knowledgeLabel = "Knowledge" }: {
+export function WorkflowGraph({ data, knowledgeLabel = "Knowledge", skillsLabel = "Skills" }: {
   data: WorkflowGraphData;
   knowledgeLabel?: string;
+  skillsLabel?: string;
 }) {
   const [step, setStep] = useState(-1);
   const ref = useRef<HTMLDivElement>(null);
@@ -150,7 +153,7 @@ export function WorkflowGraph({ data, knowledgeLabel = "Knowledge" }: {
             const minX = Math.min(...groupNodes.map((n) => n.x)) - ICON_R - pad;
             const minY = Math.min(...groupNodes.map((n) => n.y)) - ICON_R - pad;
             const maxX = Math.max(...groupNodes.map((n) => n.x)) + ICON_R + pad;
-            const maxY = Math.max(...groupNodes.map((n) => n.y)) + ICON_R + pad;
+            const maxY = Math.max(...groupNodes.map((n) => n.y)) + ICON_R + pad + (data.boxPadBottom ?? 0);
             const w = maxX - minX;
             const h = maxY - minY;
             const lw = 76;
@@ -190,7 +193,7 @@ export function WorkflowGraph({ data, knowledgeLabel = "Knowledge" }: {
           })()}
 
           {/* ── Knowledge group box (Skills + Wiki) ── */}
-          {aiNode && (() => {
+          {aiNode && !data.hideKnowledge && (() => {
             const pad = KNOW_PAD;
             const minX = skillsPos.x - ICON_R - pad;
             const minY = Math.min(skillsPos.y, wikiPos.y) - ICON_R - pad;
@@ -460,9 +463,9 @@ export function WorkflowGraph({ data, knowledgeLabel = "Knowledge" }: {
             );
           })}
           {/* ── Knowledge nodes (Skills + Wiki) ── */}
-          {aiNode && (
+          {aiNode && !data.hideKnowledge && (
             [
-              { pos: skillsPos, Icon: Cpu,      label: "Skills" },
+              { pos: skillsPos, Icon: Cpu,      label: skillsLabel },
               { pos: wikiPos,   Icon: BookOpen, label: "Wiki" },
             ].map(({ pos, Icon, label }) => {
               const nodeOpacity = step === -1 ? 1 : aiIsActive ? 1 : 0.22;

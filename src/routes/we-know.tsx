@@ -20,6 +20,7 @@ export const Route = createFileRoute("/we-know")({
 const navLinks = [
   { label: "How it works", href: "/en#how-it-works" },
   { label: "Who it's for", href: "/en#who" },
+  { label: "Discover more", href: "/discover" },
 ];
 
 const questions = [
@@ -227,9 +228,11 @@ function WeKnow() {
             Request a demo
           </a>
         </div>
-        <p className="mx-auto mt-8 max-w-7xl text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Mimētikós. All rights reserved.
-        </p>
+        <div className="mx-auto mt-8 max-w-7xl flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+          <span>© {new Date().getFullYear()} Mimētikós. All rights reserved.</span>
+          <Link to="/privacy" className="hover:text-primary">Privacy Policy</Link>
+          <Link to="/cookie" className="hover:text-primary">Cookie Policy</Link>
+        </div>
       </footer>
     </div>
   );

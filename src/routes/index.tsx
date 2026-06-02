@@ -37,6 +37,8 @@ const navLinks = [
   { label: "Come funziona", href: "#come-funziona" },
   { label: "Per chi è", href: "#per-chi" },
   { label: "Sicurezza", href: "#sicurezza" },
+  { label: "Scopri di più", href: "/scopri-di-piu" },
+  { label: "Casi d'uso", href: "/casi-duso" },
 ];
 
 const pillars = [
@@ -44,13 +46,13 @@ const pillars = [
     icon: Eye,
     title: "Osserva",
     text:
-      "Partecipa alle riunioni, legge email, messaggi e documenti, e osserva come vengono utilizzati strumenti e procedure aziendali.",
+      "Partecipa alle riunioni, legge email, messaggi e documenti, e osserva come vengono utilizzati gli strumenti.",
   },
   {
     icon: Brain,
     title: "Impara",
     text:
-      "Costruisce conoscenza operativa e apprende attività ricorrenti, procedure e modalità di lavoro della tua azienda.",
+      "Come una persona migliora la conoscenza operativa e apprende attività ricorrenti, procedure e modalità di lavoro.",
   },
   {
     icon: CheckCircle2,
@@ -66,7 +68,7 @@ const verticals = [
     img: catPromotori,
     icon: TrendingUp,
     title: "Promotori finanziari",
-    text: "Onboarding clienti, MiFID, reportistica portafogli e follow-up commerciali.",
+    text: "Gestione contatti clienti, reportistica portafogli e follow-up commerciali.",
   },
   {
     img: catCommLegali,
@@ -220,6 +222,11 @@ function Index() {
               </Link>
             </li>
             <li>
+              <Link to="/casi-duso" className="transition-colors hover:text-primary">
+                Casi d'uso
+              </Link>
+            </li>
+            <li>
               <Link to="/lo-sappiamo" className="transition-colors hover:text-primary">
                 Lo sappiamo
               </Link>
@@ -265,7 +272,7 @@ function Index() {
         {/* Contenuto centrato */}
         <div className="relative z-10 mx-auto w-full max-w-3xl px-6 text-center lg:px-10">
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            Dipendenti AI privati per professionisti e PMI
+            Dipendenti digitali per PMI e professionisti
           </p>
           <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
             Il lavoratore
@@ -278,8 +285,7 @@ function Index() {
             Artificiale, ma <span className="text-primary">intelligente.</span>
           </p>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-foreground/60 md:text-base">
-            Installa dipendenti AI che imparano le tue procedure, organizzano la conoscenza
-            ed eseguono automazioni approvate — senza inviare dati a terzi nel cloud.
+            Impara le tue procedure, organizza i documenti e li trasforma in conoscenza permanente, esegue compiti che gli deleghi, sempre.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <a
@@ -446,9 +452,11 @@ function Index() {
             Richiedi una demo
           </a>
         </div>
-        <p className="mx-auto mt-8 max-w-7xl text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Mimētikós. Tutti i diritti riservati.
-        </p>
+        <div className="mx-auto mt-8 max-w-7xl flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+          <span>© {new Date().getFullYear()} Mimētikós. Tutti i diritti riservati.</span>
+          <Link to="/privacy" className="hover:text-primary">Privacy Policy</Link>
+          <Link to="/cookie" className="hover:text-primary">Cookie Policy</Link>
+        </div>
       </footer>
     </div>
   );

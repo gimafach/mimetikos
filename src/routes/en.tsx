@@ -36,6 +36,8 @@ export const Route = createFileRoute("/en")({
 const navLinks = [
   { label: "How it works", href: "#how-it-works" },
   { label: "Who it's for", href: "#who" },
+  { label: "Discover more", href: "/discover" },
+  { label: "Use cases", href: "/use-cases" },
 ];
 
 const pillars = [
@@ -43,13 +45,13 @@ const pillars = [
     icon: Eye,
     title: "Observes",
     text:
-      "Joins meetings, reads emails, messages and documents, and watches how company tools and procedures are used.",
+      "Joins meetings, reads emails, messages and documents, and watches how tools are used.",
   },
   {
     icon: Brain,
     title: "Learns",
     text:
-      "Builds operational knowledge and learns recurring tasks, procedures and the way your company works.",
+      "Like a person, improves operational knowledge and learns recurring tasks, procedures and the way things work.",
   },
   {
     icon: CheckCircle2,
@@ -65,7 +67,7 @@ const verticals = [
     img: catPromotori,
     icon: TrendingUp,
     title: "Financial advisors",
-    text: "Client onboarding, MiFID, portfolio reporting and commercial follow-ups.",
+    text: "Client contact management, portfolio reporting and commercial follow-ups.",
   },
   {
     img: catCommLegali,
@@ -217,6 +219,11 @@ function IndexEn() {
               </Link>
             </li>
             <li>
+              <Link to="/use-cases" className="transition-colors hover:text-primary">
+                Use cases
+              </Link>
+            </li>
+            <li>
               <Link to="/we-know" className="transition-colors hover:text-primary">
                 We know
               </Link>
@@ -260,7 +267,7 @@ function IndexEn() {
         {/* Content */}
         <div className="relative z-10 mx-auto w-full max-w-3xl px-6 text-center lg:px-10">
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            Private AI employees for professionals and SMEs
+            Digital employees for SMEs and professionals
           </p>
           <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
             The worker
@@ -273,8 +280,7 @@ function IndexEn() {
             Artificial, but <span className="text-primary">intelligent.</span>
           </p>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-foreground/60 md:text-base">
-            Install AI employees that learn your procedures, organise knowledge and execute
-            approved automations — without sending data to third parties in the cloud.
+            Learns your procedures, organises documents and turns them into permanent knowledge, executes the tasks you delegate, always.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <a
@@ -441,9 +447,11 @@ function IndexEn() {
             Request a demo
           </a>
         </div>
-        <p className="mx-auto mt-8 max-w-7xl text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Mimētikós. All rights reserved.
-        </p>
+        <div className="mx-auto mt-8 max-w-7xl flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+          <span>© {new Date().getFullYear()} Mimētikós. All rights reserved.</span>
+          <Link to="/privacy" className="hover:text-primary">Privacy Policy</Link>
+          <Link to="/cookie" className="hover:text-primary">Cookie Policy</Link>
+        </div>
       </footer>
     </div>
   );

@@ -10,10 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeKnowRouteImport } from './routes/we-know'
+import { Route as UseCasesRouteImport } from './routes/use-cases'
 import { Route as ScopriDiPiuRouteImport } from './routes/scopri-di-piu'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LoSappiamoRouteImport } from './routes/lo-sappiamo'
 import { Route as EnRouteImport } from './routes/en'
 import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as CookieRouteImport } from './routes/cookie'
+import { Route as CasiDusoRouteImport } from './routes/casi-duso'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WeKnowRoute = WeKnowRouteImport.update({
@@ -21,9 +25,19 @@ const WeKnowRoute = WeKnowRouteImport.update({
   path: '/we-know',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UseCasesRoute = UseCasesRouteImport.update({
+  id: '/use-cases',
+  path: '/use-cases',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScopriDiPiuRoute = ScopriDiPiuRouteImport.update({
   id: '/scopri-di-piu',
   path: '/scopri-di-piu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoSappiamoRoute = LoSappiamoRouteImport.update({
@@ -41,6 +55,16 @@ const DiscoverRoute = DiscoverRouteImport.update({
   path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CookieRoute = CookieRouteImport.update({
+  id: '/cookie',
+  path: '/cookie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasiDusoRoute = CasiDusoRouteImport.update({
+  id: '/casi-duso',
+  path: '/casi-duso',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,56 +73,90 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/casi-duso': typeof CasiDusoRoute
+  '/cookie': typeof CookieRoute
   '/discover': typeof DiscoverRoute
   '/en': typeof EnRoute
   '/lo-sappiamo': typeof LoSappiamoRoute
+  '/privacy': typeof PrivacyRoute
   '/scopri-di-piu': typeof ScopriDiPiuRoute
+  '/use-cases': typeof UseCasesRoute
   '/we-know': typeof WeKnowRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/casi-duso': typeof CasiDusoRoute
+  '/cookie': typeof CookieRoute
   '/discover': typeof DiscoverRoute
   '/en': typeof EnRoute
   '/lo-sappiamo': typeof LoSappiamoRoute
+  '/privacy': typeof PrivacyRoute
   '/scopri-di-piu': typeof ScopriDiPiuRoute
+  '/use-cases': typeof UseCasesRoute
   '/we-know': typeof WeKnowRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/casi-duso': typeof CasiDusoRoute
+  '/cookie': typeof CookieRoute
   '/discover': typeof DiscoverRoute
   '/en': typeof EnRoute
   '/lo-sappiamo': typeof LoSappiamoRoute
+  '/privacy': typeof PrivacyRoute
   '/scopri-di-piu': typeof ScopriDiPiuRoute
+  '/use-cases': typeof UseCasesRoute
   '/we-know': typeof WeKnowRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/casi-duso'
+    | '/cookie'
     | '/discover'
     | '/en'
     | '/lo-sappiamo'
+    | '/privacy'
     | '/scopri-di-piu'
+    | '/use-cases'
     | '/we-know'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/discover' | '/en' | '/lo-sappiamo' | '/scopri-di-piu' | '/we-know'
+  to:
+    | '/'
+    | '/casi-duso'
+    | '/cookie'
+    | '/discover'
+    | '/en'
+    | '/lo-sappiamo'
+    | '/privacy'
+    | '/scopri-di-piu'
+    | '/use-cases'
+    | '/we-know'
   id:
     | '__root__'
     | '/'
+    | '/casi-duso'
+    | '/cookie'
     | '/discover'
     | '/en'
     | '/lo-sappiamo'
+    | '/privacy'
     | '/scopri-di-piu'
+    | '/use-cases'
     | '/we-know'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CasiDusoRoute: typeof CasiDusoRoute
+  CookieRoute: typeof CookieRoute
   DiscoverRoute: typeof DiscoverRoute
   EnRoute: typeof EnRoute
   LoSappiamoRoute: typeof LoSappiamoRoute
+  PrivacyRoute: typeof PrivacyRoute
   ScopriDiPiuRoute: typeof ScopriDiPiuRoute
+  UseCasesRoute: typeof UseCasesRoute
   WeKnowRoute: typeof WeKnowRoute
 }
 
@@ -111,11 +169,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WeKnowRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/use-cases': {
+      id: '/use-cases'
+      path: '/use-cases'
+      fullPath: '/use-cases'
+      preLoaderRoute: typeof UseCasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scopri-di-piu': {
       id: '/scopri-di-piu'
       path: '/scopri-di-piu'
       fullPath: '/scopri-di-piu'
       preLoaderRoute: typeof ScopriDiPiuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lo-sappiamo': {
@@ -139,6 +211,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cookie': {
+      id: '/cookie'
+      path: '/cookie'
+      fullPath: '/cookie'
+      preLoaderRoute: typeof CookieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/casi-duso': {
+      id: '/casi-duso'
+      path: '/casi-duso'
+      fullPath: '/casi-duso'
+      preLoaderRoute: typeof CasiDusoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -151,10 +237,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CasiDusoRoute: CasiDusoRoute,
+  CookieRoute: CookieRoute,
   DiscoverRoute: DiscoverRoute,
   EnRoute: EnRoute,
   LoSappiamoRoute: LoSappiamoRoute,
+  PrivacyRoute: PrivacyRoute,
   ScopriDiPiuRoute: ScopriDiPiuRoute,
+  UseCasesRoute: UseCasesRoute,
   WeKnowRoute: WeKnowRoute,
 }
 export const routeTree = rootRouteImport
