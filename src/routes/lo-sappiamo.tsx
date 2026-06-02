@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { DemoButton } from "@/components/DemoButton";
 import { MobileNav } from "@/components/MobileNav";
 
 import advantageNewImg from "@/assets/discover-advantage-new.jpg";
@@ -203,12 +204,12 @@ function LoSappiamo() {
                 Ti aiuta a proteggerlo, alleggerirlo e farlo crescere.
               </span>
             </p>
-            <a
+            <DemoButton
               href="mailto:hello@mimetikos.it"
+              label="Richiedi una demo"
+              confirmMessage="Ti ricontatteremo presto!"
               className="rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
-            >
-              Richiedi una demo
-            </a>
+            />
           </div>
         </section>
       </main>

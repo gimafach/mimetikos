@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { DemoButton } from "@/components/DemoButton";
 import { MobileNav } from "@/components/MobileNav";
 import {
   Mail,
@@ -479,12 +480,14 @@ function Discover() {
           Tell us about your workflow. We'll analyse it together and show you
           exactly how Mimētikós can handle it.
         </p>
-        <a
+        <DemoButton
           href="mailto:hello@mimetikos.ai"
+          label="Request a demo"
+          confirmMessage="We'll be in touch soon!"
+          phonePlaceholder="Your phone number"
+          phoneButtonLabel="Confirm"
           className="mt-7 inline-block rounded-md bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
-        >
-          Request a demo
-        </a>
+        />
       </section>
 
       {/* FOOTER */}

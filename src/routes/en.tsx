@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { DemoButton } from "@/components/DemoButton";
 import { MobileNav } from "@/components/MobileNav";
 import {
   Eye,
@@ -283,12 +284,14 @@ function IndexEn() {
             Learns your procedures, organises documents and turns them into permanent knowledge, executes the tasks you delegate, always.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <a
+            <DemoButton
               href="mailto:hello@mimetikos.it"
+              label="Request a demo"
+              confirmMessage="We'll be in touch soon!"
+              phonePlaceholder="Your phone number"
+              phoneButtonLabel="Confirm"
               className="rounded-md bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
-            >
-              Request a demo
-            </a>
+            />
             <a
               href="#how-it-works"
               className="rounded-md border border-white/20 px-7 py-3 text-sm font-medium text-foreground/90 backdrop-blur-sm transition-colors hover:border-primary/60 hover:text-primary"
@@ -440,12 +443,12 @@ function IndexEn() {
               Your operational AlterEgo — private and under your control.
             </p>
           </div>
-          <a
+          <DemoButton
             href="mailto:hello@mimetikos.ai"
+            label="Request a demo"
+            confirmMessage="We'll be in touch soon!"
             className="rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
-          >
-            Request a demo
-          </a>
+          />
         </div>
         <div className="mx-auto mt-8 max-w-7xl flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
           <span>© {new Date().getFullYear()} Mimētikós. All rights reserved.</span>

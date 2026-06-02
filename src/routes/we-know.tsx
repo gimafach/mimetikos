@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { DemoButton } from "@/components/DemoButton";
 import { MobileNav } from "@/components/MobileNav";
 
 import advantageNewImg from "@/assets/discover-advantage-new.jpg";
@@ -202,12 +203,14 @@ function WeKnow() {
                 It helps you protect it, simplify it and grow it.
               </span>
             </p>
-            <a
+            <DemoButton
               href="mailto:hello@mimetikos.it"
+              label="Request a demo"
+              confirmMessage="We'll be in touch soon!"
+              phonePlaceholder="Your phone number"
+              phoneButtonLabel="Confirm"
               className="rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
-            >
-              Request a demo
-            </a>
+            />
           </div>
         </section>
       </main>

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { DemoButton } from "@/components/DemoButton";
 import { MobileNav } from "@/components/MobileNav";
 import {
   Eye,
@@ -445,12 +446,12 @@ function Index() {
               Il tuo AlterEgo operativo, privato e sotto il tuo controllo.
             </p>
           </div>
-          <a
+          <DemoButton
             href="mailto:hello@mimetikos.ai"
+            label="Richiedi una demo"
+            confirmMessage="Ti ricontatteremo presto!"
             className="rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
-          >
-            Richiedi una demo
-          </a>
+          />
         </div>
         <div className="mx-auto mt-8 max-w-7xl flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
           <span>© {new Date().getFullYear()} Mimētikós. Tutti i diritti riservati.</span>

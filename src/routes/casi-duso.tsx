@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { DemoButton } from "@/components/DemoButton";
 import { MobileNav } from "@/components/MobileNav";
 import {
   Mail,
@@ -207,12 +208,12 @@ function CasiDuso() {
           Raccontaci il tuo flusso di lavoro. Lo analizziamo insieme e ti
           mostriamo come Mimētikós può gestirlo.
         </p>
-        <a
+        <DemoButton
           href="mailto:hello@mimetikos.ai"
+          label="Richiedi una demo"
+          confirmMessage="Ti ricontatteremo presto!"
           className="mt-7 inline-block rounded-md bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
-        >
-          Richiedi una demo
-        </a>
+        />
       </section>
 
       {/* FOOTER */}
