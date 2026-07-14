@@ -434,6 +434,22 @@ function IndexEn() {
         </div>
       </section>
 
+      {/* ASKY */}
+      <section className="px-6 pb-10 lg:px-10">
+        <div className="mx-auto max-w-7xl rounded-2xl bg-card px-8 py-8 text-center text-sm text-muted-foreground md:px-12">
+          The knowledge structure powering Mimētikós is designed with the specialists at{" "}
+          <a
+            href="https://www.asky.it"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-primary transition-colors hover:text-primary/80"
+          >
+            Asky.it
+          </a>
+          {" "}— the pioneers of the corporate Knowledge Genome, a structured cognitive infrastructure that works with any AI model.
+        </div>
+      </section>
+
       {/* CTA / FOOTER */}
       <footer id="contact" className="border-t border-border px-6 py-12 lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 md:flex-row md:items-center">

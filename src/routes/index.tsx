@@ -437,6 +437,22 @@ function Index() {
         </div>
       </section>
 
+      {/* ASKY */}
+      <section className="px-6 pb-10 lg:px-10">
+        <div className="mx-auto max-w-7xl rounded-2xl bg-card px-8 py-8 text-center text-sm text-muted-foreground md:px-12">
+          La struttura della conoscenza che alimenta Mimētikós è progettata con gli specialisti di{" "}
+          <a
+            href="https://www.asky.it"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-primary transition-colors hover:text-primary/80"
+          >
+            Asky.it
+          </a>
+          {" "}— i pionieri del Knowledge Genome aziendale, l&apos;infrastruttura cognitiva strutturata e indipendente da qualsiasi modello AI.
+        </div>
+      </section>
+
       {/* CTA / FOOTER */}
       <footer id="contatti" className="border-t border-border px-6 py-12 lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 md:flex-row md:items-center">
